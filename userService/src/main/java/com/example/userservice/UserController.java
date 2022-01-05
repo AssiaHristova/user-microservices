@@ -1,9 +1,9 @@
 package com.example.userservice;
 
-import com.example.addressservice.Address;
-import com.example.transactionservice.Transaction;
 import com.example.userservice.adapters.UserAddressesAdapter;
 import com.example.userservice.adapters.UserTransactionsAdapter;
+import com.example.userservice.models.AddressDTO;
+import com.example.userservice.models.TransactionDTO;
 import com.example.userservice.models.User;
 import com.example.userservice.models.UserDTO;
 import org.modelmapper.ModelMapper;
@@ -45,8 +45,8 @@ public class UserController {
     public UserDTO getUserById(@PathVariable Integer id) {
         User user = userService.findUserById(id);
         UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-        List<Address> userAddresses = userAddressesAdaptor.getUserAddresses(id);
-        List<Transaction> userTransactions = userTransactionsAdaptor.getUserTransactions(id);
+        List<AddressDTO> userAddresses = userAddressesAdaptor.getUserAddresses(id);
+        List<TransactionDTO> userTransactions = userTransactionsAdaptor.getUserTransactions(id);
         userDTO.setAddresses(userAddresses);
         userDTO.setTransactions(userTransactions);
         return userDTO;

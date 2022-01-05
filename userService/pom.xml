@@ -45,18 +45,6 @@
             <artifactId>aws-java-sdk-codebuild</artifactId>
             <version>1.11.106</version>
         </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>transactionService</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>addressService</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>

@@ -1,6 +1,6 @@
 package com.example.userservice.adapters;
 
-import com.example.transactionservice.Transaction;
+import com.example.userservice.models.TransactionDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -14,17 +14,17 @@ import java.util.stream.Collectors;
 @Component
 public class UserTransactionsAdapter {
 
-    public List<Transaction> getUserTransactions(int userId){
+    public List<TransactionDTO> getUserTransactions(int userId){
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://127.0.0.1:8001/all/?userId={userId}";
         Map<String, String> params = new HashMap<>();
         params.put("userId", String.valueOf(userId));
-        ResponseEntity<Transaction[]> entity = restTemplate.getForEntity(url, Transaction[].class, params);
-        Transaction[] transactions = entity.getBody();
+        ResponseEntity<TransactionDTO[]> entity = restTemplate.getForEntity(url, TransactionDTO[].class, params);
+        TransactionDTO[] transactions = entity.getBody();
         return filterTransactions(List.of(transactions), userId);
     }
 
-    public List<Transaction> filterTransactions(List<Transaction> transactions, Integer userId){
+    public List<TransactionDTO> filterTransactions(List<TransactionDTO> transactions, Integer userId){
         return transactions.stream().filter(transaction -> Objects.equals(transaction.getUserId(), userId)).collect(Collectors.toList());
     }
 

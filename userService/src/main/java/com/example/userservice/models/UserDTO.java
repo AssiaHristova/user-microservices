@@ -1,7 +1,5 @@
 package com.example.userservice.models;
 
-import com.example.addressservice.Address;
-import com.example.transactionservice.Transaction;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,7 +17,7 @@ public class UserDTO {
 
     private String lastName;
 
-    private List<Address> addresses;
+    private List<AddressDTO> addresses;
 
-    private List<Transaction> transactions;
+    private List<TransactionDTO> transactions;
 }
