@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+
+  address-service:
+    build: ./
+    ports:
+      - "8002:8002"
+    restart: always
+    depends_on:
+      - mongodb
+    networks:
+      - users-network
+
+  transaction-service:
+    build: ./
+    ports:
+      - "8001:8001"
+    restart: always
+    depends_on:
+      - mongodb
+    networks:
+      - users-network
+
+  user-service:
+    build: ./
+    ports:
+      - "8003:8003"
+    restart: always
+    depends_on:
+      - mongodb
+    networks:
+      - users-network
+
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+
+networks:
+  users-network:
+    driver: bridge
